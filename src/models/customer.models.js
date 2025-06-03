@@ -5,23 +5,18 @@ const customerSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	countryCode: {
-		type: Number,
-		required: true,
-		default: 91
-	},
 	contact: {
-		type: Number,
+		type: String,
 		required: true,
 	},
 	email: {
 		type: String,
-		required: false
+		required: true
 	},
 	visitPurpose: {
 		type: String,
 		enum: ["Visit", "Desk", "Cabin"],
-		default: "Visit"
+		required: true
 	}
 }, { timestamps: true });
 

@@ -1,41 +1,39 @@
 import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema({
-	vendorId: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "Vendor"
+	vendorId: { 
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: "Vendor", 
+		required: true 
 	},
 	customerId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Customer"
 	},
-	mode: {
-		type: String,
-		required: true,
-		enum: ["Offline", "Online"],
+	type: { 
+		type: String, 
+		enum: ["offline", "online"], 
+		required: true 
 	},
-	source: {
-		type: String,
-		required: true,
-		enum: ["Website", "HQ", "App", "The Hubitz", "Offline"]
+	platform: { 
+		type: String, 
+		enum: ["Website/App", "myHQ", "The Hubitz", "Other"], 
+		required: true 
 	},
-	bookingTime: {
-		type: Date,
-		required: true,
-		default: Date.now
+	bookingDetails: {
+		spaceType: { 
+			type: String, 
+			enum: ["Desk", "Cabin", "Meeting Room", "Studio"], 
+			required: true 
+		},
+		date: Date,
+		durationHours: Number
 	},
-	status: {
-		type: String,
-		required: true,
-		enum: ["Confirmed", "Pending", "Cancelled"],
-		default: "Pending"
+	status: { 
+		type: String, 
+		enum: ["pending", "confirmed", "cancelled"], 
+		default: "pending" 
 	},
-	amount: {
-		type: Number,
-		required: true,
-		min: 100,
-		default: 100
-	}
 }, { timestamps: true });
 
 const Booking = mongoose.model("Booking", bookingSchema);
