@@ -1,6 +1,6 @@
 import express, { response } from "express";
 
-import { logger } from "./middlewares/logger.js";
+import { logger } from "./middlewares/logger.middleware.js";
 import { customerRouter } from "./routes/customer.routes.js";
 
 const app = express();
